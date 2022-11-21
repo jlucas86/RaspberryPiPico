@@ -1,0 +1,9 @@
+from machine import Timer, Pin
+led = Pin("LED", machine.Pin.OUT)
+ledTimer = Timer()
+
+#flashed led every on and off howerer ofter the timers freqency is
+def flash(timer):
+    led.toggle()
+    
+ledTimer.init(freq=2.5, mode=Timer.PERIODIC, callback=flash)
