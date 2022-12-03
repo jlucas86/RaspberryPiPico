@@ -1,0 +1,35 @@
+#Open notepad on windos and type the message "don't plug randome things into your computer"
+
+import time
+import usb_hid
+from adafruit_hid.keyboard import Keyboard
+from adafruit_hid.keyboard_layout_us import KeyboardLayoutUS
+from adafruit_hid.keycode import Keycode
+
+#keyboad objects
+keyboard = Keyboard(usb_hid.devices)
+keyboard_layout = KeyboardLayoutUS(keyboard)  
+
+
+# all sleeps are done to ensure the best result
+time.sleep(.5)
+
+#open windows menu
+keyboard.press(Keycode.WINDOWS)
+keyboard.release_all()
+
+time.sleep(.5)
+
+#type notepad into search bar
+keyboard_layout.write("notepad")
+
+time.sleep(.5)
+
+#select notepad
+keyboard.press(Keycode.ENTER)
+keyboard.release_all()
+
+time.sleep(3)
+
+#write message in notepad
+keyboard_layout.write("don't plug randome things into your computer!")
